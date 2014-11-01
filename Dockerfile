@@ -19,7 +19,10 @@ RUN a2enmod rewrite
 #############################################################################
 RUN DEBIAN_FRONTEND=noninteractive \
 	apt-get update && \
-	apt-get -y install php-pear && \
+	apt-get -y install \
+		php-pear \
+		wget \
+	&& \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/
 
