@@ -20,17 +20,19 @@ RUN a2enmod rewrite
 #############################################################################
 # Ubuntu Precise needs a newer 'git' package version.
 # Add "Ubuntu git maintainers" PPA.
-RUN DEBIAN_FRONTEND=noniteractive \
+RUN \
 	echo "deb http://ppa.launchpad.net/git-core/ppa/ubuntu precise main" \
 		| tee /etc/apt/sources.list.d/git.list && \
+	DEBIAN_FRONTEND=noniteractive \
 	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E1DF1F24
 
-RUN DEBIAN_FRONTEND=noninteractive \
+RUN \
 	apt-get update && \
-	apt-get -y install \
-		git \
-		php-pear \
-		wget \
+	DEBIAN_FRONTEND=noninteractive \
+		apt-get -y install \
+			git \
+			php-pear \
+			wget \
 	&& \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/
