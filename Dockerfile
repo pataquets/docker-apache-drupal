@@ -29,8 +29,9 @@ RUN \
 RUN \
 	apt-get update && \
 	DEBIAN_FRONTEND=noninteractive \
+		apt-get -y --no-install-recommends install git && \
+	DEBIAN_FRONTEND=noninteractive \
 		apt-get -y install \
-			git \
 			php-pear \
 			wget \
 	&& \
