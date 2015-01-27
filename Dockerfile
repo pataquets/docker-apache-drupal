@@ -31,7 +31,7 @@ RUN \
 	DEBIAN_FRONTEND=noninteractive \
 		apt-get -y --no-install-recommends install git && \
 	DEBIAN_FRONTEND=noninteractive \
-		apt-get -y install \
+		apt-get -y --no-install-recommends install \
 			php-pear \
 			wget \
 	&& \
