@@ -33,7 +33,7 @@ RUN \
   echo "deb http://ppa.launchpad.net/git-core/ppa/ubuntu precise main" \
     | tee /etc/apt/sources.list.d/git.list && \
   DEBIAN_FRONTEND=noniteractive \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E1DF1F24
+    apt-key adv --keyserver hkp://hkps.pool.sks-keyservers.net --recv-keys E1DF1F24
 
 RUN \
   apt-get update && \
