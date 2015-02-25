@@ -11,7 +11,16 @@ RUN \
 			php5-sqlite \
 	&& \
 	apt-get clean && \
-	rm -rf /var/lib/apt/lists/
+	rm -rf /var/lib/apt/lists/ \
+	&& \
+	echo ";Recommended PHP settings for Drupal" > \
+		/etc/php5/conf.d/drupal-recommended.ini && \
+	echo ";See https://www.drupal.org/requirements/php" >> \
+		/etc/php5/conf.d/drupal-recommended.ini && \
+	echo "allow_url_fopen=off" >> \
+		/etc/php5/conf.d/drupal-recommended.ini && \
+	echo "expose_php=off" >> \
+		/etc/php5/conf.d/drupal-recommended.ini
 
 RUN a2enmod rewrite
 
