@@ -1,6 +1,7 @@
 FROM pataquets/apache-php:5.5
 
 ADD files/etc/php5/ /etc/php5/
+ADD files/etc/apache2/ /etc/apache2/
 
 RUN \
   apt-get update && \
@@ -16,6 +17,7 @@ RUN \
   rm -rf /var/lib/apt/lists/* \
   && \
   a2enmod rewrite && \
+  a2enconf drupal && \
   php5enmod drupal-recommended
 
 #############################################################################
