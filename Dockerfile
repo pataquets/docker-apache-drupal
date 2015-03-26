@@ -1,5 +1,7 @@
 FROM pataquets/apache-php:5.5
 
+ADD files/etc/php5/ /etc/php5/
+
 RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive \
@@ -13,17 +15,8 @@ RUN \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* \
   && \
-  echo ";Recommended PHP settings for Drupal" > \
-    /etc/php5/mods-available/drupal-recommended.ini && \
-  echo ";See https://www.drupal.org/requirements/php" >> \
-    /etc/php5/mods-available/drupal-recommended.ini && \
-  echo "allow_url_fopen=off" >> \
-    /etc/php5/mods-available/drupal-recommended.ini && \
-  echo "expose_php=off" >> \
-    /etc/php5/mods-available/drupal-recommended.ini \
-  && \
   a2enmod rewrite && \
-  php5enmod drupal-reccomended
+  php5enmod drupal-recommended
 
 #############################################################################
 ###	Install drush from PEAR repositories
