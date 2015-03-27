@@ -15,8 +15,7 @@ RUN \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/ \
   && \
-  a2enmod rewrite && \
-  php5enmod drupal-recommended
+  a2enmod rewrite
 
 #############################################################################
 ###	Install drush from PEAR repositories
