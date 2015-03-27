@@ -25,7 +25,7 @@ RUN \
 #############################################################################
 # Add "Ubuntu git maintainers" PPA.
 RUN \
-  echo "deb http://ppa.launchpad.net/git-core/ppa/ubuntu precise main" \
+  echo "deb http://ppa.launchpad.net/git-core/ppa/ubuntu $(lsb_release -cs) main" \
     | tee /etc/apt/sources.list.d/git.list && \
   DEBIAN_FRONTEND=noniteractive \
     apt-key adv --keyserver hkp://hkps.pool.sks-keyservers.net --recv-keys E1DF1F24 && \
