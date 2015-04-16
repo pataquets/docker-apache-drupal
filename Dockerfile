@@ -12,6 +12,7 @@ RUN \
       php5-mysql \
       php5-pgsql \
       php5-sqlite \
+      mysql-client \
   && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* \
