@@ -43,5 +43,6 @@ RUN \
 
 RUN \
   pear channel-discover pear.drush.org && \
-  pear install drush/drush
+  pear install drush/drush && \
+  ln -s /usr/share/php/drush/drush.complete.sh /etc/bash_completion.d/
 #############################################################################
