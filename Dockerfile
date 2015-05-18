@@ -22,27 +22,25 @@ RUN \
   php5enmod drupal-recommended
 
 #############################################################################
-###	Install drush from PEAR repositories
+###    Install Drush 6.6 via Composer
 #############################################################################
-# Add "Ubuntu git maintainers" PPA.
+# - Install 'wget' package to download composer
+# - Temporarily disable 'drupal-recommended.ini' to enable 'allow_url_fopen'
+# - @todo: Check if Drush doesn't needs 'wget' if 'allow_url_fopen' is On
 RUN \
-  echo "deb http://ppa.launchpad.net/git-core/ppa/ubuntu $(lsb_release -cs) main" \
-    | tee /etc/apt/sources.list.d/git.list && \
-  DEBIAN_FRONTEND=noniteractive \
-    apt-key adv --keyserver hkp://hkps.pool.sks-keyservers.net --recv-keys E1DF1F24 && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive \
-    apt-get -y --no-install-recommends install git && \
-  DEBIAN_FRONTEND=noninteractive \
-    apt-get -y --no-install-recommends install \
-      php-pear \
-      wget \
+    apt-get -y install wget \
   && \
   apt-get clean && \
-  rm -rf /var/lib/apt/lists/
-
-RUN \
-  pear channel-discover pear.drush.org && \
-  pear install drush/drush && \
-  ln -s /usr/share/php/drush/drush.complete.sh /etc/bash_completion.d/
+  rm -rf /var/lib/apt/lists/* \
+  && \
+  php5dismod drupal-recommended && \
+  wget -O - https://getcomposer.org/installer | php && \
+  mv composer.phar /usr/local/bin/composer && \
+  composer --update-no-dev global require drush/drush:6.* && \
+  ln -vs ~/.composer/vendor/drush/drush/drush /usr/bin/drush && \
+  ln -vs ~/.composer/vendor/drush/drush/drush.complete.sh \
+    /etc/bash_completion.d/ && \
+  php5enmod drupal-recommended
 #############################################################################
