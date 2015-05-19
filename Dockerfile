@@ -36,8 +36,8 @@ RUN \
   rm -rf /var/lib/apt/lists/* \
   && \
   php5dismod drupal-recommended && \
-  wget -O - https://getcomposer.org/installer | php && \
-  mv composer.phar /usr/local/bin/composer && \
+  wget -O - https://getcomposer.org/installer | \
+    php -- --install-dir=/usr/local/bin --filename=composer && \
   composer --update-no-dev global require drush/drush:6.* && \
   ln -vs ~/.composer/vendor/drush/drush/drush /usr/bin/drush && \
   ln -vs ~/.composer/vendor/drush/drush/drush.complete.sh \
