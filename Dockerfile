@@ -22,7 +22,7 @@ RUN \
   php5enmod drupal-recommended
 
 #############################################################################
-###    Install Drush 6.6 via Composer
+###    Install Drush 6.6 via Git & Composer
 #############################################################################
 # - Install 'wget' package to download composer
 # - Temporarily disable 'drupal-recommended.ini' to enable 'allow_url_fopen'
@@ -32,15 +32,22 @@ RUN \
   DEBIAN_FRONTEND=noninteractive \
     apt-get -y install wget \
   && \
+  DEBIAN_FRONTEND=noninteractive \
+    apt-get -y --no-install-recommends install git \
+  && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* \
   && \
   php5dismod drupal-recommended && \
   wget -O - https://getcomposer.org/installer | \
     php -- --install-dir=/usr/local/bin --filename=composer && \
-  composer --update-no-dev global require drush/drush:6.* && \
-  ln -vs ~/.composer/vendor/drush/drush/drush /usr/bin/drush && \
-  ln -vs ~/.composer/vendor/drush/drush/drush.complete.sh \
-    /etc/bash_completion.d/ && \
-  php5enmod drupal-recommended
+  git clone --single-branch --branch 6.6.0 https://github.com/drush-ops/drush.git \
+    /usr/local/src/drush && \
+  cd /usr/local/src/drush && \
+  composer install --verbose --no-dev && \
+  composer clear-cache --verbose && \
+  php5enmod drupal-recommended && \
+  rm -vrf /root/.composer && \
+  ln -vs /usr/local/src/drush/drush /usr/bin/drush && \
+  ln -vs /usr/local/src/drush/drush.complete.sh /etc/bash_completion.d/
 #############################################################################
