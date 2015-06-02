@@ -49,5 +49,6 @@ RUN \
   php5enmod drupal-recommended && \
   rm -vrf /root/.composer && \
   ln -vs /usr/local/src/drush/drush /usr/bin/drush && \
-  ln -vs /usr/local/src/drush/drush.complete.sh /etc/bash_completion.d/
+  ln -vs /usr/local/src/drush/drush.complete.sh /etc/bash_completion.d/ && \
+  drush --verbose version
 #############################################################################
