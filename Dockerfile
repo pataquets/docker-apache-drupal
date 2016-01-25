@@ -41,7 +41,7 @@ RUN \
   php5dismod drupal-recommended && \
   wget -O - https://getcomposer.org/installer | \
     php -- --install-dir=/usr/local/bin --filename=composer && \
-  git clone --single-branch --branch 6.6.0 https://github.com/drush-ops/drush.git \
+  git clone --single-branch --branch 6.7.0 https://github.com/drush-ops/drush.git \
     /usr/local/src/drush && \
   cd /usr/local/src/drush && \
   composer install --verbose --no-dev && \
