@@ -24,13 +24,12 @@ RUN \
 #############################################################################
 ###    Install Drush 6.6 via Git & Composer
 #############################################################################
-# - Install 'wget' package to download composer
+# - Install 'curl' package to download composer
 # - Temporarily disable 'drupal-recommended.ini' to enable 'allow_url_fopen'
-# - @todo: Check if Drush doesn't needs 'wget' if 'allow_url_fopen' is On
 RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive \
-    apt-get -y install wget \
+    apt-get -y install curl \
   && \
   DEBIAN_FRONTEND=noninteractive \
     apt-get -y --no-install-recommends install git \
@@ -39,7 +38,7 @@ RUN \
   rm -rf /var/lib/apt/lists/* \
   && \
   php5dismod drupal-recommended && \
-  wget -O - https://getcomposer.org/installer | \
+  curl --fail --location https://getcomposer.org/installer | \
     php -- --install-dir=/usr/local/bin --filename=composer && \
   git clone --single-branch --branch 6.7.0 https://github.com/drush-ops/drush.git \
     /usr/local/src/drush && \
