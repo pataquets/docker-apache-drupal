@@ -22,7 +22,7 @@ RUN \
   phpenmod drupal-recommended
 
 #############################################################################
-###    Install Drush 6.6 via Git & Composer
+###    Install Drush via Git & Composer
 #############################################################################
 # - Install 'curl' package to download composer
 # - Temporarily disable 'drupal-recommended.ini' to enable 'allow_url_fopen'
