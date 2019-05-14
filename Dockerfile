@@ -1,6 +1,6 @@
 FROM pataquets/apache-php:xenial
 
-ADD files/etc/php5/ /etc/php5/
+ADD files/etc/php/7.0/ /etc/php/7.0/
 ADD files/etc/apache2/ /etc/apache2/
 
 RUN \
