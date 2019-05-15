@@ -40,7 +40,7 @@ RUN \
   rm -rf /var/lib/apt/lists/* \
   && \
   phpdismod drupal-recommended && \
-  curl --fail --location --silent --show-errors https://getcomposer.org/installer | \
+  curl --fail --location --silent --show-error https://getcomposer.org/installer | \
     php -- --install-dir=/usr/local/bin --filename=composer && \
   git clone --single-branch --branch 6.7.0 https://github.com/drush-ops/drush.git \
     /usr/local/src/drush && \
