@@ -9,6 +9,7 @@ RUN \
     apt-get -y install \
       php-curl \
       php-gd \
+      php-mbstring \
       php-mysql \
       php-pgsql \
       php-sqlite3 \
