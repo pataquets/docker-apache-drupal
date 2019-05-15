@@ -1,6 +1,6 @@
-FROM pataquets/apache-php:xenial
+FROM pataquets/apache-php:bionic
 
-ADD files/etc/php/7.0/ /etc/php/7.0/
+ADD files/etc/php/7.2/ /etc/php/7.2/
 ADD files/etc/apache2/ /etc/apache2/
 
 RUN \
