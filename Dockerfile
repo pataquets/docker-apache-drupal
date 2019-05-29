@@ -13,7 +13,7 @@ RUN \
       php-mysql \
       php-pgsql \
       php-sqlite3 \
-      mysql-client \
+      mariadb-client \
   && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* \
