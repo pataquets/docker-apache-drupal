@@ -14,6 +14,7 @@ RUN \
       php-pgsql \
       php-sqlite3 \
       mariadb-client \
+      sudo \
   && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* \
