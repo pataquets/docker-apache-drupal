@@ -51,6 +51,7 @@ RUN \
   composer clear-cache --verbose && \
   phpenmod drupal-recommended && \
   rm -vrf /root/.composer && \
+  rm -vrf /root/.drush && \
   ln -vs /usr/local/src/drush/drush /usr/bin/drush && \
   ln -vs /usr/local/src/drush/drush.complete.sh /etc/bash_completion.d/ && \
   drush --verbose version
