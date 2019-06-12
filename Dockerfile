@@ -27,16 +27,24 @@ RUN \
 ###    Install Drush via Git & Composer
 #############################################################################
 # - Install 'curl' package to download composer
+# - Temporarily install 'php-pear' to download Console_Table PEAR package to
+#   fix https://github.com/drush-ops/drush/issues/3226
 # - Temporarily disable 'drupal-recommended.ini' to enable 'allow_url_fopen'
 RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive \
+    apt-get -y --no-install-recommends install git \
+  && \
+  DEBIAN_FRONTEND=noninteractive \
     apt-get -y install \
       curl \
       php-dom \
+      php-pear \
   && \
+  pear install Console_Table-1.3.1 && \
+  rm -vrf /tmp/pear && \
   DEBIAN_FRONTEND=noninteractive \
-    apt-get -y --no-install-recommends install git \
+    apt-get -y purge php-pear \
   && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* \
@@ -54,5 +62,5 @@ RUN \
   rm -vrf /root/.drush && \
   ln -vs /usr/local/src/drush/drush /usr/bin/drush && \
   ln -vs /usr/local/src/drush/drush.complete.sh /etc/bash_completion.d/ && \
-  drush --verbose version
+  drush --verbose status
 #############################################################################
